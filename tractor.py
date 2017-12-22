@@ -1,11 +1,12 @@
 class tractor:
-  position = 0
-  def honk():
+  def __init__(self):
+    self.position = 0
+  def honk(self):
     print("doot doot")
-  def drive():
-    position+=1
-  def GPS():
-    print("in",500-position,"turn left")
+  def drive(self):
+    self.position+=1
+  def GPS(self):
+    print("in",500-self.position,"turn left")
 
 a = tractor()
 a.honk()
