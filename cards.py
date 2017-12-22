@@ -38,3 +38,32 @@ class Deck:
     
     def deal(self):
         return self.deck.pop()
+
+class Hand:
+    def __init__(self, cards):
+        self.cards = cards
+        self.count = {}
+        for i in cards:
+            j = str(i)
+            if j in self.count.keys(): self.count[j] += 1
+            else: self.count[j] = 1
+
+    def __str__(self):
+        return str([str(x) for x in self.cards])
+    
+    def play(self, other):
+        playCount = {}
+        for i in other.cards:
+            j = str(i)
+            if j in playCount.keys(): playCount[j] += 1
+            else: playCount[j] = 1
+        for i in playCount.keys():
+            if i not in self.count.keys() or playCount[i] > self.count[i]: return False
+
+        tmp = []
+        for i in self.cards:
+            j = str(i)
+            if j in playCount.keys() and playCount[j] > 0: playCount[j] -= 1
+            else: tmp.append(i) 
+        self.cards = tmp
+        return True
